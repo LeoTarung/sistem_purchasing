@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>RMA | Purchasing Systems </title>
+    <title>RMA | Purchasing System</title>
     <link rel="icon" href="/img/nm_title.png" type="image/x-icon" />
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     {{-- <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet"> --}}
