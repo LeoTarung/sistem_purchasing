@@ -61,11 +61,66 @@
     <script>
         const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
         const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+
+
+
+        @if (Auth::user()->role == 'Supplier')
+            function showgallery2(curarra) {
+                let total = curarra.length + 1;
+                // console.log(total)
+                // Update the count badge visibility and text
+                if (total > 0) {
+                    document.getElementById("countMsg").hidden = true;
+                    //     // const total = 5; // Example notification count
+                    //     console.log(total);
+                    //     const countMsg = document.getElementById("countMsg");
+
+                    //     countMsg.innerText = total;
+                    countMsg.innerHTML = total;
+                    countMsg.hidden = false;
+
+                    //     console.log(countMsg); // Ensure the element is properly selected
+                } else {
+                    document.getElementById("countMsg").hidden = true;
+                }
+
+                // Update the message inside the dropdown
+                // document.getElementById("pMsg").innerText = `You have ${total} Notification(s)`;
+
+                // Build the HTML for notifications
+                let notificationHTML = "";
+                for (let i = 0; i < curarra.length; i++) {
+                    notificationHTML += `
+            <a class="dropdown-item media" href="/data/detail/po/${curarra[i].short_po}">
+                <i class="fa fa-warning"></i>
+                <p>${curarra[i].data.no_po}</p>
+            </a>`;
+                }
+
+                // Update the dropdown menu with notifications
+                document.getElementById("notificationMsg").innerHTML = notificationHTML;
+            }
+
+            // Fetch user ID from the template
+            let userId = {{ Auth::user()->id }};
+
+            // Make the AJAX request to get notifications
+            $.ajax({
+                url: `/api/alert/${userId}`,
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    console.log("Server Response:", data); // Check the response
+                    showgallery2(data); // Call function to display notifications
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error fetching data:", error);
+                    console.log("Server Response:", xhr.responseText); // Log the raw response
+                }
+            });
+        @endif
     </script>
 </body>
-
-
-
-
 
 </html>

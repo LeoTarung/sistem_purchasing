@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PurchaseOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/get-price/{id}', [PurchaseOrderController::class, 'getPrice'])->name('getPrice');
+Route::post('/acc-po/{po}', [PurchaseOrderController::class, 'accPO'])->name('accPO');
+Route::post('/send-po-supp/{po}/{user}', [PurchaseOrderController::class, 'sendPOtoSupp'])->name('accPO');
+Route::get('/alert/{id}', [PurchaseOrderController::class, 'getNotif'])->name('getPrice');

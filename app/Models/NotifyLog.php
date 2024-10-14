@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class NotifyLog extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
 }

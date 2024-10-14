@@ -106,27 +106,58 @@
                         </a>
                     </li>
                 @endif --}}
-                <li class="menu-title">Master Data</li>
-                <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Master Data</a>
-                    <ul class="sub-menu children dropdown-menu">
-                        <li>
-                            <i class="fa fa-user"></i><a href="/data/user" class="ms-1">Master User</a>
-                        </li>
-                        <li>
-                            <i class="fa fa-users"></i><a href="/data/supplier" class="ms-1">Master Supplier</a>
-                        </li>
-                        <li>
-                            <i class="fa fa-users"></i><a href="/data/material" class="ms-1">Master Material</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="/data/po">
-                        <i class="menu-icon fa fa-truck"></i> Purchase Order
-                    </a>
-                </li>
+                @if (Auth::user()->role == 'Staff Purchasing')
+                    <li class="menu-title">Admin Purchasing Menu</li>
+                    <li>
+                        <a href="/home">
+                            <i class="menu-icon fa fa-home"></i>Home
+                        </a>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Master Data</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li>
+                                <i class="fa fa-user"></i><a href="/data/user" class="ms-1">Master User</a>
+                            </li>
+                            <li>
+                                <i class="fa fa-inbox"></i><a href="/data/supplier" class="ms-1">Master Supplier</a>
+                            </li>
+                            <li>
+                                <i class="fa fa-book"></i><a href="/data/material" class="ms-1">Master Material</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/data/po">
+                            <i class="menu-icon fa fa-truck"></i> Purchase Order
+                        </a>
+                    </li>
+                @elseif (Auth::user()->role == 'Head Purchasing')
+                    <li class="menu-title">Head Purchasing Menu</li>
+                    <li>
+                        <a href="/home">
+                            <i class="menu-icon fa fa-home"></i>Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/data/po">
+                            <i class="menu-icon fa fa-truck"></i> Purchase Order
+                        </a>
+                    </li>
+                @elseif (Auth::user()->role == 'Supplier')
+                    <li class="menu-title">Supplier Menu</li>
+                    <li>
+                        <a href="/home">
+                            <i class="menu-icon fa fa-home"></i>Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/data/po">
+                            <i class="menu-icon fa fa-truck"></i> Purchase Order
+                        </a>
+                    </li>
+                @endif
             </ul>
         </div><!-- /.navbar-collapse -->
     </nav>

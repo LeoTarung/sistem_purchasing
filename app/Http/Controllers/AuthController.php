@@ -22,38 +22,25 @@ class AuthController extends Controller
 
     protected function authenticated(Request $request)
     {
-        $credentials = $request->only('NRP', 'password');
-        // dd 
-        // Retrieve the user by the provided npk
-        $user = User::where('nrp', $credentials['NRP'])->first();
+        $credentials = $request->only('email', 'password');
 
-        // Check if the user exists and the provided password matches
-        if ($user && $user->password === $credentials['password']) {
+        // Retrieve the user by the provided email
+        $user = User::where('email', $credentials['email'])->first();
+
+        // Check if the user exists and the provided password matches (using bcrypt)
+        if ($user && Hash::check($credentials['password'], $user->password)) {
             // User is authenticated, log them in
             auth()->login($user);
+
+            // You can access user's role like this if you have a relationship or a direct role attribute
             // dd(Auth::user(), $user, $credentials);
-            // dd($user->role->jenis_role);
-            if ($user->role === '5' && $user->departement === 'HC & GA') { // Kepala Departement HRD
-                return "Bu Dian";
-            } else if ($user->role === '4' && $user->seksi === 'HRD') { //Kepala Seksi HRD
-                return "Pak Wahyu";
-            } else if ($user->role === '3' && $user->seksi === 'HRD') {
-                return "Admin HRD";
-            } else if ($user->role === '4') { // Section HEAD  Role
-                return "SECTION HEAD";
-                // return redirect('/Menu-skill-map');
-            } else if ($user->role === '5') { // Departemen HEAD  Role
-                return "DEPARTEMEN HEAD";
-                // return redirect('/Menu-skill-map');
-            } else {
-                return "Basic Account";
-                // return redirect('/Menu-skill-map');
-            }
+            // dd($user->role->jenis_role); // Or adapt this to your needs
+
             // Redirect the user to the desired location after login
-            return redirect('/dashboard');
+            return redirect('/home');
         } else {
             // Authentication failed, redirect back to the login page with an error message.
-            return redirect()->route('login')->with('error', 'Invalid NRP or password.');
+            return redirect()->route('login')->with('error', 'Invalid email or password.');
         }
     }
 
