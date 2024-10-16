@@ -63,7 +63,14 @@
                                 <input type="text" class="form-control" id="name" name="name" required>
                             </div>
                         </div>
-
+                        <div class="row g-3 mb-3">
+                            <div class="col-auto d-flex align-items-center">
+                                <label for="staticEmail2" class="fw-bold">Price</label>
+                            </div>
+                            <div class="col-auto">
+                                <input type="number" class="form-control" id="price" name="price" required>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Submit</button>

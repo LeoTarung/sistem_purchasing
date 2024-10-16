@@ -19,6 +19,14 @@
             </div>
         </div>
         <div class="row g-3 mb-3">
+            <div class="col-auto d-flex align-items-center">
+                <label for="staticEmail2" class="fw-bold">Price</label>
+            </div>
+            <div class="col-auto">
+                <input type="text" class="form-control" id="price" name="price" value="{{ $mat->price }}">
+            </div>
+        </div>
+        <div class="row g-3 mb-3">
             <div class="col-6 d-flex justify-content-center">
                 <button type="submit" class="btn btn-primary w-100">Submit</button>
             </div>

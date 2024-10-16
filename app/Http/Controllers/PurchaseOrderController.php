@@ -120,6 +120,7 @@ class PurchaseOrderController extends Controller
         $material = Material::create([
             'id' => $request->kode_produk,
             'name' => $request->name,
+            'price' => $request->name,
         ]);
         return redirect()->back()->with('success', 'Informasi added successfully.');
     }

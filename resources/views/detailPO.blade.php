@@ -162,6 +162,19 @@
             <button class="btn btn-outline-danger w-25 m-2" type="button" onclick="hapus()">Delete</button>
         </div>
     @endif
+    {{-- @if (Auth::user()->role == 'Supplier')
+        <div class="row d-flex justify-content-center mt-5">
+            @if ($fullPO->status == 'Telah Divalidasi Kepala Purchasing')
+                <button class="btn btn-outline-info w-25 m-2 " type="button" onclick="pass()">Kirim</button>
+            @elseif ($fullPO->status == 'Revisi')
+                <button class="btn btn-outline-warning w-25 m-2 " type="button" onclick="edit()">Edit</button>
+                <button class="btn btn-outline-primary w-25 m-2 " type="button" onclick="showNotes()">Notes</button>
+            @else
+                <button class="btn btn-outline-warning w-25 m-2 " type="button" onclick="edit()">Edit</button>
+            @endif
+            <button class="btn btn-outline-danger w-25 m-2" type="button" onclick="hapus()">Delete</button>
+        </div>
+    @endif --}}
 
     <!-- Modal Add Training -->
     <div class="modal fade border-0" id="newTraining" tabindex="-1" aria-labelledby="newTrainingLabel" aria-hidden="true">
